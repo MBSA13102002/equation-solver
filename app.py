@@ -115,6 +115,11 @@ class ConvolutionalNeuralNetwork:
 
 
 
+@app.route("/",methods = ['GET'])
+def start():
+    return "success"
+
+
 @app.route("/predict",methods = ['POST'])
 def predict():
 
