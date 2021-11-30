@@ -1,32 +1,9 @@
-import pandas as pd
 import numpy as np
 import cv2
 import os
 
-from keras.layers import Conv2D, MaxPooling2D, Dense, Flatten, Dropout
-from keras.models import Sequential, model_from_json
-
-from os.path import isfile, join
-from keras import backend as K
-from os import listdir
+from keras.models import model_from_json
 from PIL import Image
-
-index_by_directory = {
-    '0': 0,
-    '1': 1,
-    '2': 2,
-    '3': 3,
-    '4': 4,
-    '5': 5,
-    '6': 6,
-    '7': 7,
-    '8': 8,
-    '9': 9,
-    '+': 10,
-    '-': 11,
-    'x': 12
-}
-
 
 
 def extract_imgs(img):
@@ -85,10 +62,6 @@ class ConvolutionalNeuralNetwork:
     def __init__(self):
         if os.path.exists('model/model_weights.h5') and os.path.exists('model/model.json'):
             self.load_model()
-        else:
-            self.create_model()
-            self.train_model()
-            self.export_model()
 
 
     def load_model(self):
@@ -102,7 +75,6 @@ class ConvolutionalNeuralNetwork:
         loaded_model.load_weights("model/model_weights.h5")
 
         self.model = loaded_model
-
 
 
     def predict(self, operationBytes):
